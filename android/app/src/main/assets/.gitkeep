@@ -1,0 +1,2 @@
+占位文件：保证 src/main/assets 目录存在，Gradle 打包 assets 时不会告警。
+把需要随 APK 一起分发、且不属于仓库根 assets/ 的额外资源放这里。

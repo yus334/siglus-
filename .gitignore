@@ -1,0 +1,30 @@
+# 构建产物
+build/
+cmake-build-*/
+out/
+*.apk
+*.aab
+*.so
+*.a
+
+# 依赖（由 build_apk 脚本 / CI 自动拉取）
+thirdparty/
+
+# 安卓
+android/.gradle/
+android/build/
+android/app/build/
+android/app/.cxx/
+android/app/.externalNativeBuild/
+android/local.properties
+# SDL 的 Java 端由构建脚本从 thirdparty/SDL 拷贝
+android/app/src/main/java/org/libsdl/app/
+
+# 运行时生成的存档
+assets/save/
+save/
+
+# 不要忽略字体与游戏数据
+!assets/font/*.ttf
+!assets/font/*.ttc
+!assets/font/*.otf

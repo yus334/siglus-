@@ -1,0 +1,116 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    namespace 'com.siglus.port'
+    compileSdk 34
+    ndkVersion '25.2.9519653'
+
+    defaultConfig {
+        applicationId "com.siglus.port"
+        minSdk 23
+        targetSdk 34
+        versionCode 1
+        versionName "0.1.0"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags '-std=c++17', '-fexceptions', '-frtti'
+                abiFilters 'arm64-v8a', 'armeabi-v7a'
+                arguments '-DANDROID_STL=c++_static',
+                          '-DSIGLUS_BUILD_TOOLS=OFF',
+                          "-DSIGLUS_SDL2_ROOT=${resolveSdl2Root()}",
+                          "-DSIGLUS_STB_INCLUDE_DIR=${resolveStbRoot()}"
+            }
+        }
+    }
+
+    // 把仓库根目录的 assets/（game.ini、脚本、字体…）一起打进 APK，
+    // 首次启动由 SiglusActivity 释放到 filesDir/game，装完即可运行。
+    sourceSets {
+        main {
+            assets.srcDirs = ['src/main/assets', '../../assets']
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("${System.getProperty('user.home')}/.android/debug.keystore")
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+
+    // 配置了 SIGLUS_KEYSTORE 才创建正式签名配置，否则 release 退回 debug 签名
+    def ksPath = System.getenv('SIGLUS_KEYSTORE') ?: (project.findProperty('SIGLUS_KEYSTORE') as String)
+    if (ksPath != null && !ksPath.isEmpty() && file(ksPath).exists()) {
+        signingConfigs.create('releaseSign') {
+            storeFile file(ksPath)
+            storePassword(System.getenv('SIGLUS_KEYSTORE_PASSWORD') ?: project.findProperty('SIGLUS_KEYSTORE_PASSWORD') as String)
+            keyAlias(System.getenv('SIGLUS_KEY_ALIAS') ?: project.findProperty('SIGLUS_KEY_ALIAS') as String)
+            keyPassword(System.getenv('SIGLUS_KEY_PASSWORD') ?: project.findProperty('SIGLUS_KEY_PASSWORD') as String)
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.findByName('releaseSign') ?: signingConfigs.debug
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version '3.22.1'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    // 输出固定文件名，方便 CI 上传与分发
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def type = variant.buildType.name
+            outputFileName = "siglus-port-${variant.versionName}-${type}.apk"
+        }
+    }
+}
+
+// SDL2 源码根目录：gradle.properties 的 SDL2_DIR > 环境变量 > 默认 ../thirdparty/SDL
+def resolveSdl2Root() {
+    def fromProps = project.findProperty('SDL2_DIR')
+    if (fromProps != null && !fromProps.toString().isEmpty()) return file(fromProps).absolutePath
+    def fromEnv = System.getenv('SIGLUS_SDL2_ROOT')
+    if (fromEnv != null && !fromEnv.isEmpty()) return new File(fromEnv).absolutePath
+    return file("${rootDir}/../thirdparty/SDL").absolutePath
+}
+
+// stb 头文件目录：gradle.properties 的 STB_DIR > 环境变量 > 默认 ../thirdparty/stb
+def resolveStbRoot() {
+    def fromProps = project.findProperty('STB_DIR')
+    if (fromProps != null && !fromProps.toString().isEmpty()) return file(fromProps).absolutePath
+    def fromEnv = System.getenv('STB_INCLUDE_DIR')
+    if (fromEnv != null && !fromEnv.isEmpty()) return new File(fromEnv).absolutePath
+    return file("${rootDir}/../thirdparty/stb").absolutePath
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:1.12.0"
+    implementation "androidx.documentfile:documentfile:1.0.1"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.22"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
+}

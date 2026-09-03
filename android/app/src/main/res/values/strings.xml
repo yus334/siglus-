@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SiglusPort</string>
+    <string name="pick_folder">选择游戏数据目录</string>
+    <string name="importing">正在导入数据…</string>
+</resources>
