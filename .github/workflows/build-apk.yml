@@ -7,6 +7,13 @@ on:
     branches: [main, master]
     tags: ['v*']
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-apk-${{ github.ref }}
+  cancel-in-progress: true
     inputs:
       build_type:
         description: '构建类型'
@@ -120,6 +127,31 @@ jobs:
             tail -n 200 /tmp/build.log
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
+      # 把错误摘要推到 ci-logs 分支，便于从 raw.githubusercontent.com 直接读取
+      - name: 保存错误摘要到 ci-logs 分支
+        if: failure() && steps.apk.outcome == 'failure'
+        continue-on-error: true
+        run: |
+          {
+            echo "=== run $GITHUB_RUN_NUMBER / commit $GITHUB_SHA ==="
+            echo "=== What went wrong ==="
+            grep -n -A 60 "What went wrong" /tmp/build.log || echo "(none)"
+            echo "=== 疑似错误行 ==="
+            grep -n -i -E "error:|FAILED|CMake Error|ninja: error|Exception is|Could not|not found|No such file" /tmp/build.log | head -n 80
+            echo "=== 日志末尾 300 行 ==="
+            tail -n 300 /tmp/build.log
+          } > /tmp/err-digest.txt
+
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          git checkout --orphan ci-logs
+          git rm -rf --cached . >/dev/null 2>&1 || true
+          mkdir -p logs
+          cp /tmp/err-digest.txt logs/latest.log
+          git add -f logs/latest.log
+          git commit -q -m "CI failure digest run $GITHUB_RUN_NUMBER" || exit 0
+          git push -q --force origin ci-logs
 
       - name: 上传 APK
         uses: actions/upload-artifact@v4
