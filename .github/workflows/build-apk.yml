@@ -82,16 +82,44 @@ jobs:
           sudo ln -sf /opt/gradle-8.2/bin/gradle /usr/local/bin/gradle
           gradle --version
 
-      - name: 构建 APK
-        working-directory: android
+      - name: 构建前自检
         run: |
           set -e
+          echo "仓库根："; ls -1
+          echo "--- thirdparty/SDL ---"; ls -1 thirdparty/SDL | head -n 6
+          echo "--- thirdparty/stb ---"; ls -1 thirdparty/stb 2>/dev/null | head -n 6 || echo "(无 stb)"
+          echo "--- SDL Java 端 ---"; ls -1 android/app/src/main/java/org/libsdl/app
+
+      - name: 构建 APK
+        id: apk
+        working-directory: android
+        run: |
           TYPE="${{ inputs.build_type }}"
-          if [ -z "$TYPE" ] || [ "$TYPE" = "debug" ]; then
-            gradle assembleDebug --no-daemon --stacktrace
-          else
-            gradle assembleRelease --no-daemon --stacktrace
-          fi
+          TASK="assembleDebug"
+          if [ "$TYPE" = "release" ]; then TASK="assembleRelease"; fi
+          set +e
+          gradle "$TASK" --no-daemon --stacktrace > /tmp/build.log 2>&1
+          RC=$?
+          set -e
+          echo "gradle exit=$RC"
+          tail -n 60 /tmp/build.log
+          exit $RC
+
+      # 失败时把关键错误写进 Summary，省去翻长日志
+      - name: 输出失败摘要
+        if: failure() && steps.apk.outcome == 'failure'
+        run: |
+          {
+            echo "## 构建失败：关键错误"
+            echo '```'
+            grep -n -A 40 "What went wrong" /tmp/build.log || echo "(未找到 What went wrong 段)"
+            echo '```'
+            echo
+            echo "## 日志末尾 200 行"
+            echo '```'
+            tail -n 200 /tmp/build.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: 上传 APK
         uses: actions/upload-artifact@v4
