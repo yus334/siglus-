@@ -7,13 +7,6 @@ on:
     branches: [main, master]
     tags: ['v*']
   workflow_dispatch:
-
-permissions:
-  contents: write
-
-concurrency:
-  group: build-apk-${{ github.ref }}
-  cancel-in-progress: true
     inputs:
       build_type:
         description: '构建类型'
@@ -21,6 +14,13 @@ concurrency:
         default: 'debug'
         type: choice
         options: [debug, release]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-apk-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-apk:
@@ -39,7 +39,7 @@ jobs:
       - name: 安装 Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: 安装 SDK 组件（NDK / CMake / BuildTools / Platform 34）
+      - name: 安装 SDK 组件（NDK / BuildTools / Platform 34）
         run: |
           set -e
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
@@ -47,8 +47,7 @@ jobs:
             "platform-tools" \
             "platforms;android-34" \
             "build-tools;34.0.0" \
-            "ndk;25.2.9519653" \
-            "cmake;3.22.1"
+            "ndk;25.2.9519653"
 
       - name: 拉取 SDL2
         run: |
@@ -96,6 +95,7 @@ jobs:
           echo "--- thirdparty/SDL ---"; ls -1 thirdparty/SDL | head -n 6
           echo "--- thirdparty/stb ---"; ls -1 thirdparty/stb 2>/dev/null | head -n 6 || echo "(无 stb)"
           echo "--- SDL Java 端 ---"; ls -1 android/app/src/main/java/org/libsdl/app
+          echo "--- jni ---"; ls -1 android/app/src/main/jni
 
       - name: 构建 APK
         id: apk
@@ -112,7 +112,7 @@ jobs:
           tail -n 60 /tmp/build.log
           exit $RC
 
-      # 失败时把关键错误写进 Summary，省去翻长日志
+      # 失败时把关键错误写进 Summary
       - name: 输出失败摘要
         if: failure() && steps.apk.outcome == 'failure'
         run: |
@@ -128,30 +128,28 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
-      # 把错误摘要推到 ci-logs 分支，便于从 raw.githubusercontent.com 直接读取
-      - name: 保存错误摘要到 ci-logs 分支
+      # 用 Contents API 写入 logs/run-<n>.log，便于从 raw.githubusercontent.com 匿名读取
+      - name: 上传错误摘要到 ci-logs
         if: failure() && steps.apk.outcome == 'failure'
         continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           {
             echo "=== run $GITHUB_RUN_NUMBER / commit $GITHUB_SHA ==="
             echo "=== What went wrong ==="
             grep -n -A 60 "What went wrong" /tmp/build.log || echo "(none)"
             echo "=== 疑似错误行 ==="
-            grep -n -i -E "error:|FAILED|CMake Error|ninja: error|Exception is|Could not|not found|No such file" /tmp/build.log | head -n 80
+            grep -n -i -E "error:|FAILED|CMake Error|ninja: error|Exception is|Could not|not found|No such file|undefined reference|fatal error" /tmp/build.log | head -n 80
             echo "=== 日志末尾 300 行 ==="
             tail -n 300 /tmp/build.log
           } > /tmp/err-digest.txt
-
-          git config user.name "ci-bot"
-          git config user.email "ci-bot@users.noreply.github.com"
-          git checkout --orphan ci-logs
-          git rm -rf --cached . >/dev/null 2>&1 || true
-          mkdir -p logs
-          cp /tmp/err-digest.txt logs/latest.log
-          git add -f logs/latest.log
-          git commit -q -m "CI failure digest run $GITHUB_RUN_NUMBER" || exit 0
-          git push -q --force origin ci-logs
+          B64=$(base64 -w0 /tmp/err-digest.txt)
+          curl -sS -X PUT \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -d "{\"message\":\"CI error run $GITHUB_RUN_NUMBER\",\"content\":\"$B64\"}" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/logs/run-$GITHUB_RUN_NUMBER.log"
 
       - name: 上传 APK
         uses: actions/upload-artifact@v4
