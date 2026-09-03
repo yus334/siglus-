@@ -1,0 +1,378 @@
+=== run 6 / commit 5d462253851013ba39715c08c2d19e7989b6d8cc ===
+=== What went wrong ===
+48:* What went wrong:
+49-Execution failed for task ':app:buildNdkBuildDebug[arm64-v8a]'.
+50-> com.android.ide.common.process.ProcessException: [arm64-v8a] Compile        : SDL2 <= SDL.c
+51-  [arm64-v8a] Compile        : SDL2 <= SDL_assert.c
+52-  [arm64-v8a] Compile        : SDL2 <= SDL_dataqueue.c
+53-  [arm64-v8a] Compile        : SDL2 <= SDL_error.c
+54-  [arm64-v8a] Compile        : SDL2 <= SDL_guid.c
+55-  [arm64-v8a] Compile        : SDL2 <= SDL_hints.c
+56-  [arm64-v8a] Compile        : SDL2 <= SDL_list.c
+57-  [arm64-v8a] Compile        : SDL2 <= SDL_log.c
+58-  [arm64-v8a] Compile        : SDL2 <= SDL_utils.c
+59-  [arm64-v8a] Compile        : SDL2 <= SDL_audio.c
+60-  [arm64-v8a] Compile        : SDL2 <= SDL_audiocvt.c
+61-  [arm64-v8a] Compile        : SDL2 <= SDL_audiodev.c
+62-  [arm64-v8a] Compile        : SDL2 <= SDL_audiotypecvt.c
+63-  [arm64-v8a] Compile        : SDL2 <= SDL_mixer.c
+64-  [arm64-v8a] Compile        : SDL2 <= SDL_wave.c
+65-  [arm64-v8a] Compile        : SDL2 <= SDL_androidaudio.c
+66-  [arm64-v8a] Compile        : SDL2 <= SDL_dummyaudio.c
+67-  [arm64-v8a] Compile        : SDL2 <= SDL_aaudio.c
+68-  [arm64-v8a] Compile        : SDL2 <= SDL_openslES.c
+69-  [arm64-v8a] Compile        : SDL2 <= SDL_atomic.c
+70-  [arm64-v8a] Compile        : SDL2 <= SDL_spinlock.c
+71-  [arm64-v8a] Compile        : SDL2 <= SDL_android.c
+72-  [arm64-v8a] Compile        : SDL2 <= SDL_cpuinfo.c
+73-  [arm64-v8a] Compile        : SDL2 <= SDL_dynapi.c
+74-  [arm64-v8a] Compile        : SDL2 <= SDL_clipboardevents.c
+75-  [arm64-v8a] Compile        : SDL2 <= SDL_displayevents.c
+76-  [arm64-v8a] Compile        : SDL2 <= SDL_dropevents.c
+77-  [arm64-v8a] Compile        : SDL2 <= SDL_events.c
+78-  [arm64-v8a] Compile        : SDL2 <= SDL_gesture.c
+79-  [arm64-v8a] Compile        : SDL2 <= SDL_keyboard.c
+80-  [arm64-v8a] Compile        : SDL2 <= SDL_keysym_to_scancode.c
+81-  [arm64-v8a] Compile        : SDL2 <= SDL_mouse.c
+82-  [arm64-v8a] Compile        : SDL2 <= SDL_quit.c
+83-  [arm64-v8a] Compile        : SDL2 <= SDL_scancode_tables.c
+84-  [arm64-v8a] Compile        : SDL2 <= SDL_touch.c
+85-  [arm64-v8a] Compile        : SDL2 <= SDL_windowevents.c
+86-  [arm64-v8a] Compile        : SDL2 <= imKStoUCS.c
+87-  [arm64-v8a] Compile        : SDL2 <= SDL_rwops.c
+88-  [arm64-v8a] Compile        : SDL2 <= SDL_haptic.c
+89-  [arm64-v8a] Compile        : SDL2 <= SDL_syshaptic.c
+90-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi.c
+91-  [arm64-v8a] Compile++      : SDL2 <= hid.cpp
+92-  [arm64-v8a] Compile        : SDL2 <= SDL_gamecontroller.c
+93-  [arm64-v8a] Compile        : SDL2 <= SDL_joystick.c
+94-  [arm64-v8a] Compile        : SDL2 <= SDL_steam_virtual_gamepad.c
+95-  [arm64-v8a] Compile        : SDL2 <= controller_type.c
+96-  [arm64-v8a] Compile        : SDL2 <= SDL_sysjoystick.c
+97-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_combined.c
+98-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_gamecube.c
+99-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_luna.c
+100-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_ps3.c
+101-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_ps4.c
+102-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_ps5.c
+103-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_rumble.c
+104-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_shield.c
+105-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_stadia.c
+106-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_steam.c
+107-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_steamdeck.c
+108-  [arm64-v8a] Compile        : SDL2 <= SDL_hidapi_switch.c
+=== 疑似错误行 ===
+39:> Task :app:buildNdkBuildDebug[arm64-v8a] FAILED
+40:C/C++: /home/runner/work/siglus-/siglus-/android/app/src/main/jni/../../../../../src/media/Decoder.cpp:14:10: fatal error: 'stb_vorbis.h' file not found
+46:FAILURE: Build failed with an exception.
+49:Execution failed for task ':app:buildNdkBuildDebug[arm64-v8a]'.
+227:  C++ build system [build] failed while executing:
+241:  /home/runner/work/siglus-/siglus-/android/app/src/main/jni/../../../../../src/media/Decoder.cpp:14:10: fatal error: 'stb_vorbis.h' file not found
+252:* Exception is:
+253:org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':app:buildNdkBuildDebug[arm64-v8a]'.
+461:C++ build system [build] failed while executing:
+475:/home/runner/work/siglus-/siglus-/android/app/src/main/jni/../../../../../src/media/Decoder.cpp:14:10: fatal error: 'stb_vorbis.h' file not found
+773:C++ build system [build] failed while executing:
+787:/home/runner/work/siglus-/siglus-/android/app/src/main/jni/../../../../../src/media/Decoder.cpp:14:10: fatal error: 'stb_vorbis.h' file not found
+822:BUILD FAILED in 1m 29s
+=== 日志末尾 300 行 ===
+	at org.gradle.internal.execution.steps.ResolveInputChangesStep.execute(ResolveInputChangesStep.java:29)
+	at org.gradle.internal.execution.steps.BuildCacheStep.executeWithoutCache(BuildCacheStep.java:179)
+	at org.gradle.internal.execution.steps.BuildCacheStep.lambda$execute$1(BuildCacheStep.java:70)
+	at org.gradle.internal.Either$Right.fold(Either.java:175)
+	at org.gradle.internal.execution.caching.CachingState.fold(CachingState.java:59)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:68)
+	at org.gradle.internal.execution.steps.BuildCacheStep.execute(BuildCacheStep.java:46)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:36)
+	at org.gradle.internal.execution.steps.StoreExecutionStateStep.execute(StoreExecutionStateStep.java:25)
+	at org.gradle.internal.execution.steps.RecordOutputsStep.execute(RecordOutputsStep.java:36)
+	at org.gradle.internal.execution.steps.RecordOutputsStep.execute(RecordOutputsStep.java:22)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.executeBecause(SkipUpToDateStep.java:91)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.lambda$execute$2(SkipUpToDateStep.java:55)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:55)
+	at org.gradle.internal.execution.steps.SkipUpToDateStep.execute(SkipUpToDateStep.java:37)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:65)
+	at org.gradle.internal.execution.steps.ResolveChangesStep.execute(ResolveChangesStep.java:36)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:37)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsFinishedStep.execute(MarkSnapshottingInputsFinishedStep.java:27)
+	at org.gradle.internal.execution.steps.ResolveCachingStateStep.execute(ResolveCachingStateStep.java:77)
+	at org.gradle.internal.execution.steps.ResolveCachingStateStep.execute(ResolveCachingStateStep.java:38)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:94)
+	at org.gradle.internal.execution.steps.ValidateStep.execute(ValidateStep.java:49)
+	at org.gradle.internal.execution.steps.CaptureStateBeforeExecutionStep.execute(CaptureStateBeforeExecutionStep.java:71)
+	at org.gradle.internal.execution.steps.CaptureStateBeforeExecutionStep.execute(CaptureStateBeforeExecutionStep.java:45)
+	at org.gradle.internal.execution.steps.SkipEmptyWorkStep.executeWithNonEmptySources(SkipEmptyWorkStep.java:177)
+	at org.gradle.internal.execution.steps.SkipEmptyWorkStep.execute(SkipEmptyWorkStep.java:81)
+	at org.gradle.internal.execution.steps.SkipEmptyWorkStep.execute(SkipEmptyWorkStep.java:53)
+	at org.gradle.internal.execution.steps.RemoveUntrackedExecutionStateStep.execute(RemoveUntrackedExecutionStateStep.java:32)
+	at org.gradle.internal.execution.steps.RemoveUntrackedExecutionStateStep.execute(RemoveUntrackedExecutionStateStep.java:21)
+	at org.gradle.internal.execution.steps.legacy.MarkSnapshottingInputsStartedStep.execute(MarkSnapshottingInputsStartedStep.java:38)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:36)
+	at org.gradle.internal.execution.steps.LoadPreviousExecutionStateStep.execute(LoadPreviousExecutionStateStep.java:23)
+	at org.gradle.internal.execution.steps.CleanupStaleOutputsStep.execute(CleanupStaleOutputsStep.java:75)
+	at org.gradle.internal.execution.steps.CleanupStaleOutputsStep.execute(CleanupStaleOutputsStep.java:41)
+	at org.gradle.internal.execution.steps.AssignWorkspaceStep.lambda$execute$0(AssignWorkspaceStep.java:32)
+	at org.gradle.api.internal.tasks.execution.TaskExecution$4.withWorkspace(TaskExecution.java:293)
+	at org.gradle.internal.execution.steps.AssignWorkspaceStep.execute(AssignWorkspaceStep.java:30)
+	at org.gradle.internal.execution.steps.AssignWorkspaceStep.execute(AssignWorkspaceStep.java:21)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:37)
+	at org.gradle.internal.execution.steps.IdentityCacheStep.execute(IdentityCacheStep.java:27)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:47)
+	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:34)
+	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:64)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:146)
+	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:135)
+	at org.gradle.api.internal.tasks.execution.FinalizePropertiesTaskExecuter.execute(FinalizePropertiesTaskExecuter.java:46)
+	at org.gradle.api.internal.tasks.execution.ResolveTaskExecutionModeExecuter.execute(ResolveTaskExecutionModeExecuter.java:51)
+	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:57)
+	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:74)
+	at org.gradle.api.internal.tasks.execution.CatchExceptionTaskExecuter.execute(CatchExceptionTaskExecuter.java:36)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.executeTask(EventFiringTaskExecuter.java:77)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:55)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter$1.call(EventFiringTaskExecuter.java:52)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:204)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:199)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:73)
+	at org.gradle.api.internal.tasks.execution.EventFiringTaskExecuter.execute(EventFiringTaskExecuter.java:52)
+	at org.gradle.execution.plan.LocalTaskNodeExecutor.execute(LocalTaskNodeExecutor.java:42)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:337)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$InvokeNodeExecutorsAction.execute(DefaultTaskExecutionGraph.java:324)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:317)
+	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:303)
+	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:463)
+	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:380)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+Caused by: com.android.ide.common.process.ProcessException: [arm64-v8a] Compile        : SDL2 <= SDL.c
+[arm64-v8a] Compile        : SDL2 <= SDL_assert.c
+[arm64-v8a] Compile        : SDL2 <= SDL_dataqueue.c
+[arm64-v8a] Compile        : SDL2 <= SDL_error.c
+[arm64-v8a] Compile        : SDL2 <= SDL_guid.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hints.c
+[arm64-v8a] Compile        : SDL2 <= SDL_list.c
+[arm64-v8a] Compile        : SDL2 <= SDL_log.c
+[arm64-v8a] Compile        : SDL2 <= SDL_utils.c
+[arm64-v8a] Compile        : SDL2 <= SDL_audio.c
+[arm64-v8a] Compile        : SDL2 <= SDL_audiocvt.c
+[arm64-v8a] Compile        : SDL2 <= SDL_audiodev.c
+[arm64-v8a] Compile        : SDL2 <= SDL_audiotypecvt.c
+[arm64-v8a] Compile        : SDL2 <= SDL_mixer.c
+[arm64-v8a] Compile        : SDL2 <= SDL_wave.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidaudio.c
+[arm64-v8a] Compile        : SDL2 <= SDL_dummyaudio.c
+[arm64-v8a] Compile        : SDL2 <= SDL_aaudio.c
+[arm64-v8a] Compile        : SDL2 <= SDL_openslES.c
+[arm64-v8a] Compile        : SDL2 <= SDL_atomic.c
+[arm64-v8a] Compile        : SDL2 <= SDL_spinlock.c
+[arm64-v8a] Compile        : SDL2 <= SDL_android.c
+[arm64-v8a] Compile        : SDL2 <= SDL_cpuinfo.c
+[arm64-v8a] Compile        : SDL2 <= SDL_dynapi.c
+[arm64-v8a] Compile        : SDL2 <= SDL_clipboardevents.c
+[arm64-v8a] Compile        : SDL2 <= SDL_displayevents.c
+[arm64-v8a] Compile        : SDL2 <= SDL_dropevents.c
+[arm64-v8a] Compile        : SDL2 <= SDL_events.c
+[arm64-v8a] Compile        : SDL2 <= SDL_gesture.c
+[arm64-v8a] Compile        : SDL2 <= SDL_keyboard.c
+[arm64-v8a] Compile        : SDL2 <= SDL_keysym_to_scancode.c
+[arm64-v8a] Compile        : SDL2 <= SDL_mouse.c
+[arm64-v8a] Compile        : SDL2 <= SDL_quit.c
+[arm64-v8a] Compile        : SDL2 <= SDL_scancode_tables.c
+[arm64-v8a] Compile        : SDL2 <= SDL_touch.c
+[arm64-v8a] Compile        : SDL2 <= SDL_windowevents.c
+[arm64-v8a] Compile        : SDL2 <= imKStoUCS.c
+[arm64-v8a] Compile        : SDL2 <= SDL_rwops.c
+[arm64-v8a] Compile        : SDL2 <= SDL_haptic.c
+[arm64-v8a] Compile        : SDL2 <= SDL_syshaptic.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi.c
+[arm64-v8a] Compile++      : SDL2 <= hid.cpp
+[arm64-v8a] Compile        : SDL2 <= SDL_gamecontroller.c
+[arm64-v8a] Compile        : SDL2 <= SDL_joystick.c
+[arm64-v8a] Compile        : SDL2 <= SDL_steam_virtual_gamepad.c
+[arm64-v8a] Compile        : SDL2 <= controller_type.c
+[arm64-v8a] Compile        : SDL2 <= SDL_sysjoystick.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_combined.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_gamecube.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_luna.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_ps3.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_ps4.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_ps5.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_rumble.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_shield.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_stadia.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_steam.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_steamdeck.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_switch.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_wii.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_xbox360.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_xbox360w.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapi_xboxone.c
+[arm64-v8a] Compile        : SDL2 <= SDL_hidapijoystick.c
+[arm64-v8a] Compile        : SDL2 <= SDL_virtualjoystick.c
+[arm64-v8a] Compile        : SDL2 <= SDL_sysloadso.c
+[arm64-v8a] Compile        : SDL2 <= SDL_locale.c
+[arm64-v8a] Compile        : SDL2 <= SDL_syslocale.c
+[arm64-v8a] Compile        : SDL2 <= SDL_url.c
+[arm64-v8a] Compile        : SDL2 <= SDL_sysurl.c
+[arm64-v8a] Compile        : SDL2 <= SDL_power.c
+[arm64-v8a] Compile        : SDL2 <= SDL_syspower.c
+[arm64-v8a] Compile        : SDL2 <= SDL_sysfilesystem.c
+[arm64-v8a] Compile        : SDL2 <= SDL_sensor.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidsensor.c
+[arm64-v8a] Compile        : SDL2 <= SDL_d3dmath.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render.c
+[arm64-v8a] Compile        : SDL2 <= SDL_yuv_sw.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_d3d.c
+[arm64-v8a] Compile        : SDL2 <= SDL_shaders_d3d.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_d3d11.c
+[arm64-v8a] Compile        : SDL2 <= SDL_shaders_d3d11.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_d3d12.c
+[arm64-v8a] Compile        : SDL2 <= SDL_shaders_d3d12.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_gl.c
+[arm64-v8a] Compile        : SDL2 <= SDL_shaders_gl.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_gles.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_gles2.c
+[arm64-v8a] Compile        : SDL2 <= SDL_shaders_gles2.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_ps2.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_psp.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blendfillrect.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blendline.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blendpoint.c
+[arm64-v8a] Compile        : SDL2 <= SDL_drawline.c
+[arm64-v8a] Compile        : SDL2 <= SDL_drawpoint.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_sw.c
+[arm64-v8a] Compile        : SDL2 <= SDL_rotate.c
+[arm64-v8a] Compile        : SDL2 <= SDL_triangle.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_vita_gxm.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_vita_gxm_memory.c
+[arm64-v8a] Compile        : SDL2 <= SDL_render_vita_gxm_tools.c
+[arm64-v8a] Compile        : SDL2 <= SDL_crc16.c
+[arm64-v8a] Compile        : SDL2 <= SDL_crc32.c
+[arm64-v8a] Compile        : SDL2 <= SDL_getenv.c
+[arm64-v8a] Compile        : SDL2 <= SDL_iconv.c
+[arm64-v8a] Compile        : SDL2 <= SDL_malloc.c
+[arm64-v8a] Compile        : SDL2 <= SDL_mslibc.c
+[arm64-v8a] Compile        : SDL2 <= SDL_qsort.c
+[arm64-v8a] Compile        : SDL2 <= SDL_stdlib.c
+[arm64-v8a] Compile        : SDL2 <= SDL_string.c
+[arm64-v8a] Compile        : SDL2 <= SDL_strtokr.c
+[arm64-v8a] Compile        : SDL2 <= SDL_thread.c
+[arm64-v8a] Compile        : SDL2 <= SDL_syscond.c
+[arm64-v8a] Compile        : SDL2 <= SDL_sysmutex.c
+[arm64-v8a] Compile        : SDL2 <= SDL_syssem.c
+[arm64-v8a] Compile        : SDL2 <= SDL_systhread.c
+[arm64-v8a] Compile        : SDL2 <= SDL_systls.c
+[arm64-v8a] Compile        : SDL2 <= SDL_timer.c
+[arm64-v8a] Compile        : SDL2 <= SDL_systimer.c
+[arm64-v8a] Compile        : SDL2 <= SDL_RLEaccel.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blit.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blit_0.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blit_1.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blit_A.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blit_N.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blit_auto.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blit_copy.c
+[arm64-v8a] Compile        : SDL2 <= SDL_blit_slow.c
+[arm64-v8a] Compile        : SDL2 <= SDL_bmp.c
+[arm64-v8a] Compile        : SDL2 <= SDL_clipboard.c
+[arm64-v8a] Compile        : SDL2 <= SDL_egl.c
+[arm64-v8a] Compile        : SDL2 <= SDL_fillrect.c
+[arm64-v8a] Compile        : SDL2 <= SDL_pixels.c
+[arm64-v8a] Compile        : SDL2 <= SDL_rect.c
+[arm64-v8a] Compile        : SDL2 <= SDL_shape.c
+[arm64-v8a] Compile        : SDL2 <= SDL_stretch.c
+[arm64-v8a] Compile        : SDL2 <= SDL_surface.c
+[arm64-v8a] Compile        : SDL2 <= SDL_video.c
+[arm64-v8a] Compile        : SDL2 <= SDL_vulkan_utils.c
+[arm64-v8a] Compile        : SDL2 <= SDL_yuv.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidclipboard.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidevents.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidgl.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidkeyboard.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidmessagebox.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidmouse.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidtouch.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidvideo.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidvulkan.c
+[arm64-v8a] Compile        : SDL2 <= SDL_androidwindow.c
+[arm64-v8a] Compile        : SDL2 <= yuv_rgb_lsx.c
+[arm64-v8a] Compile        : SDL2 <= yuv_rgb_sse.c
+[arm64-v8a] Compile        : SDL2 <= yuv_rgb_std.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_assert.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_common.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_compare.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_crc32.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_font.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_fuzzer.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_harness.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_imageBlit.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_imageBlitBlend.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_imageFace.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_imagePrimitives.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_imagePrimitivesBlend.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_log.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_md5.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_memory.c
+[arm64-v8a] Compile        : SDL2 <= SDL_test_random.c
+[arm64-v8a] Compile        : cpufeatures <= cpu-features.c
+[arm64-v8a] StaticLibrary  : libcpufeatures.a
+[arm64-v8a] SharedLibrary  : libSDL2.so
+[arm64-v8a] Compile++      : siglus <= FileSystem.cpp
+[arm64-v8a] Compile++      : siglus <= Archive.cpp
+[arm64-v8a] Compile++      : siglus <= Decoder.cpp
+
+C++ build system [build] failed while executing:
+    /usr/local/lib/android/sdk/ndk/25.2.9519653/ndk-build \
+      NDK_PROJECT_PATH=null \
+      APP_BUILD_SCRIPT=/home/runner/work/siglus-/siglus-/android/app/src/main/jni/Android.mk \
+      NDK_APPLICATION_MK=/home/runner/work/siglus-/siglus-/android/app/src/main/jni/Application.mk \
+      APP_ABI=arm64-v8a \
+      NDK_ALL_ABIS=arm64-v8a \
+      NDK_DEBUG=1 \
+      APP_PLATFORM=android-23 \
+      NDK_OUT=/home/runner/work/siglus-/siglus-/android/app/build/intermediates/cxx/Debug/664kg104/obj \
+      NDK_LIBS_OUT=/home/runner/work/siglus-/siglus-/android/app/build/intermediates/cxx/Debug/664kg104/lib \
+      SDL2 \
+      siglus
+  from /home/runner/work/siglus-/siglus-/android/app
+/home/runner/work/siglus-/siglus-/android/app/src/main/jni/../../../../../src/media/Decoder.cpp:14:10: fatal error: 'stb_vorbis.h' file not found
+#include <stb_vorbis.h>
+         ^~~~~~~~~~~~~~
+1 error generated.
+make: *** [/usr/local/lib/android/sdk/ndk/25.2.9519653/build/core/build-binary.mk:424: /home/runner/work/siglus-/siglus-/android/app/build/intermediates/cxx/Debug/664kg104/obj/local/arm64-v8a/objs/siglus//home/runner/work/siglus-/siglus-/android/app/src/main/jni/__/__/__/__/__/src/media/Decoder.o] Error 1
+	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt.execute(ExecuteProcess.kt:274)
+	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt$executeProcess$1.invoke(ExecuteProcess.kt:106)
+	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt$executeProcess$1.invoke(ExecuteProcess.kt:104)
+	at com.android.build.gradle.internal.cxx.timing.TimingEnvironmentKt.time(TimingEnvironment.kt:32)
+	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt.executeProcess(ExecuteProcess.kt:104)
+	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt.executeProcess$default(ExecuteProcess.kt:84)
+	at com.android.build.gradle.internal.cxx.build.CxxRegularBuilder.executeProcessBatch(CxxRegularBuilder.kt:331)
+	at com.android.build.gradle.internal.cxx.build.CxxRegularBuilder.build(CxxRegularBuilder.kt:128)
+	at com.android.build.gradle.tasks.ExternalNativeBuildTask$doTaskAction$$inlined$recordTaskAction$1.invoke(BaseTask.kt:70)
+	at com.android.build.gradle.internal.tasks.Blocks.recordSpan(Blocks.java:51)
+	at com.android.build.gradle.tasks.ExternalNativeBuildTask.doTaskAction(ExternalNativeBuildTask.kt:145)
+	at com.android.build.gradle.internal.tasks.UnsafeOutputsTask$taskAction$$inlined$recordTaskAction$1.invoke(BaseTask.kt:65)
+	at com.android.build.gradle.internal.tasks.Blocks.recordSpan(Blocks.java:51)
+	at com.android.build.gradle.internal.tasks.UnsafeOutputsTask.taskAction(UnsafeOutputsTask.kt:63)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:125)
+	... 113 more
+Caused by: com.android.ide.common.process.ProcessException: Error while executing process /usr/local/lib/android/sdk/ndk/25.2.9519653/ndk-build with arguments {NDK_PROJECT_PATH=null APP_BUILD_SCRIPT=/home/runner/work/siglus-/siglus-/android/app/src/main/jni/Android.mk NDK_APPLICATION_MK=/home/runner/work/siglus-/siglus-/android/app/src/main/jni/Application.mk APP_ABI=arm64-v8a NDK_ALL_ABIS=arm64-v8a NDK_DEBUG=1 APP_PLATFORM=android-23 NDK_OUT=/home/runner/work/siglus-/siglus-/android/app/build/intermediates/cxx/Debug/664kg104/obj NDK_LIBS_OUT=/home/runner/work/siglus-/siglus-/android/app/build/intermediates/cxx/Debug/664kg104/lib SDL2 siglus}
+	at com.android.build.gradle.internal.process.GradleProcessResult.buildProcessException(GradleProcessResult.java:73)
+	at com.android.build.gradle.internal.process.GradleProcessResult.assertNormalExitValue(GradleProcessResult.java:48)
+	at com.android.build.gradle.internal.cxx.process.ExecuteProcessKt.execute(ExecuteProcess.kt:269)
+	... 130 more
+Caused by: org.gradle.process.internal.ExecException: Process 'command '/usr/local/lib/android/sdk/ndk/25.2.9519653/ndk-build'' finished with non-zero exit value 2
+	at org.gradle.process.internal.DefaultExecHandle$ExecResultImpl.assertNormalExitValue(DefaultExecHandle.java:415)
+	at com.android.build.gradle.internal.process.GradleProcessResult.assertNormalExitValue(GradleProcessResult.java:46)
+	... 131 more
+
+
+BUILD FAILED in 1m 29s
+22 actionable tasks: 22 executed
