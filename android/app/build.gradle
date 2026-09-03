@@ -36,11 +36,9 @@ android {
     }
 
     signingConfigs {
+        // 不要显式指定 storeFile：AGP 只在未指定时才会自动生成
+        // ~/.android/debug.keystore，写死路径会让 CI（无该文件）直接失败。
         debug {
-            storeFile file("${System.getProperty('user.home')}/.android/debug.keystore")
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
         }
     }
 

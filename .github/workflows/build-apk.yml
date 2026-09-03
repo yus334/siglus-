@@ -64,10 +64,23 @@ jobs:
             git clone --depth 1 https://github.com/nothings/stb thirdparty/stb
           fi
 
-      - name: 安装 Gradle
-        uses: gradle/actions/setup-gradle@v3
+      - name: 缓存 Gradle 依赖
+        uses: actions/cache@v4
         with:
-          gradle-version: '8.2'
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/*.gradle.kts') }}
+          restore-keys: gradle-${{ runner.os }}-
+
+      # 直接安装到 PATH，不依赖 action 注入，避免 "gradle: command not found"
+      - name: 安装 Gradle 8.2
+        run: |
+          set -e
+          curl -sSL -o /tmp/gradle.zip https://services.gradle.org/distributions/gradle-8.2-bin.zip
+          sudo unzip -q -o /tmp/gradle.zip -d /opt
+          sudo ln -sf /opt/gradle-8.2/bin/gradle /usr/local/bin/gradle
+          gradle --version
 
       - name: 构建 APK
         working-directory: android

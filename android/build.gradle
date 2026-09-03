@@ -10,13 +10,6 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+// 注意：不要在这里写 allprojects { repositories { ... } }，
+// 与 settings.gradle 的 repositoriesMode 冲突会直接让构建失败。
+// 仓库统一由 settings.gradle 的 dependencyResolutionManagement 提供。

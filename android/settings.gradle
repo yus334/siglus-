@@ -6,7 +6,9 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    // 用 PREFER_SETTINGS：允许 build.gradle 里再声明仓库，避免
+    // "prefer settings repositories over project repositories" 直接失败
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
